@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { EUserActions, GetUserSuccess, GetUsersSuccess, GetUser,GetUsers } from '../e-user-actions.enum';
+import { EUserActions, GetUserSuccess, GetUsersSuccess, GetUser,GetUsers } from '../actions/e-user-actions.enum';
 import { of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
-import { IAppState } from '../../state/i-app-state';
+import { IAppState } from '../state/i-app-state';
+import { selectUserList } from '../selectors/user-selectors';
 
 @Injectable() export class UserEffects {
     @Effect() getUser$ = this._actions$.pipe(ofType<GetUser>(EUserActions.GetUser),
